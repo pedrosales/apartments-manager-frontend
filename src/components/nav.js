@@ -49,6 +49,15 @@ const Nav = () => {
             <ul>
                 <li><Link to="/create">new post</Link></li>
             </ul>
+            <ul>
+                <li><Link to="/condominiums/new">New Condominium</Link></li>
+            </ul>
+            <ul>
+                <li><Link to="/apartments/new">New Apartment</Link></li>
+            </ul>
+            <ul>
+                <li><Link to="/residents/new">New Resident</Link></li>
+            </ul>
         </nav>
     )
 }

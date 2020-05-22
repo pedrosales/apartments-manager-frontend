@@ -1,12 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+
+import firebase from '../../firebase/config';
 
 import './style.css';
 
 import logoImg from '../../assets/logo.svg';
 
-export default function NewResident() {
+const NewResident = () => {
+    const [userState, setUserState] = useState(null);
+
+    const history = useHistory();
+
+    useEffect(() => {
+        firebase.getUserState().then((user) => {
+            if (user) {
+                setUserState(user);
+            }
+            else {
+                history.push('/login');
+            }
+        })
+    })
+
     return (
         <div className="new-resident-container">
             <div className="content">
@@ -14,8 +31,7 @@ export default function NewResident() {
                     <img src={logoImg} alt="Apartments Manager" />
 
                     <div style={{ padding: 10 }}>
-                        <h1>Create Residents</h1>
-                        <p>Create new apartments residents.</p>
+                        <h1>Create new Resident</h1>
 
                         {/* <Link className="back-link" to="/">
                         <FiArrowLeft size={16} color="#e02041" />
@@ -56,3 +72,5 @@ export default function NewResident() {
         </div>
     );
 };
+
+export default withRouter(NewResident);

@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+
 import api from '../../services/api';
+import firebase from '../../firebase/config';
 
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
 
-export default function NewCondominium() {
+const NewCondominium = () => {
+    const [userState, setUserState] = useState(null);
     const [name, setName] = useState('');
     const [street, setStreet] = useState('');
     const [number, setNumber] = useState('');
@@ -17,6 +20,18 @@ export default function NewCondominium() {
     const [zipCode, setZipCode] = useState('');
 
     const history = useHistory();
+
+    useEffect(() => {
+        firebase.getUserState().then((user) => {
+            if (user) {
+                setUserState(user);
+            }
+            else {
+                history.push('/login');
+            }
+        })
+    })
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -33,8 +48,11 @@ export default function NewCondominium() {
         };
 
         try {
+            const token = await userState.getIdToken().then(token => {
+                return token;
+            });
 
-            const response = await api.post('v1/condominiums', data);
+            const response = await api.post('v1/condominiums', data, { headers: { 'Authorization': `Bearer ${token}` } });
 
             if (!response.data.success) {
                 //alert(response.data.message);
@@ -50,7 +68,7 @@ export default function NewCondominium() {
 
         } catch (error) {
             console.log(error);
-            alert("Error on condominium creation.");
+            alert("Error in condominium creation.");
         }
     }
 
@@ -61,11 +79,10 @@ export default function NewCondominium() {
                     <img src={logoImg} alt="Apartments Manager" />
 
                     <h1>Create new condominium</h1>
-                    <p>Provide informations about the Condominium</p>
 
                     <Link className="back-link" to="/profile">
                         <FiArrowLeft size={16} color="#e02041" />
-                        Voltar para home
+                        Back to home
                     </Link>
                 </section>
                 <form onSubmit={handleSubmit}>
@@ -142,4 +159,6 @@ export default function NewCondominium() {
             </div>
         </div>
     );
-}
+};
+
+export default withRouter(NewCondominium);

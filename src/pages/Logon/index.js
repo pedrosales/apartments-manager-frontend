@@ -1,38 +1,66 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
 import api from '../../services/api';
+import firebase from '../../firebase/config';
 
-import './styles.css';
+import './style.css';
 
 import logoImg from '../../assets/logo.svg';
 import buildingImg from '../../assets/building.png';
 
-export default function Logon() {
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [routeRedirect, setRedirect] = useState(false);
+    const history = useHistory();
+
+    const login = async (e) => {
+        e.preventDefault();
+        let response = await firebase.login(email, password);
+        if (response.hasOwnProperty("message")) {
+            console.log(response.message);
+        }
+        if (response.hasOwnProperty("user")) {
+            console.log(response.user);
+            history.push("/");
+        }
+    };
+
     return (
         <div className="logon-container">
             <section className="form">
                 <img src={logoImg} alt="ApartmentsBuilding" />
 
-                <form>
-                    <h1>Faça seu logon</h1>
+                <form onSubmit={login}>
+                    <h1>Make your login</h1>
 
                     <input
-                        placeholder="Sua ID"
-                    // value={id}
-                    // onChange={e => setId(e.target.value)}
+                        placeholder="Email"
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
-                    <button className="button" type="submit">Entrar</button>
+                    <input
+                        placeholder="Password"
+                        type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <button className="button" type="submit">Login</button>
 
                     <Link className="back-link" to="/register">
                         <FiLogIn size={16} color="#e02041" />
-                        Não tenho cadastro
+                        SignIn
                     </Link>
                 </form>
             </section>
 
-            <img src={buildingImg} alt="Heroes" />
+            <img src={buildingImg} height="400" alt="Heroes" />
         </div>
     );
 }
+
+export default withRouter(Login);

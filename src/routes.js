@@ -3,10 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 
 import Main from './components/main';
 import Signin from './components/signin';
-import Login from './components/login';
+//import Login from './components/login';
 import NewCondominium from './pages/Condominium';
 import NewResident from './pages/Resident';
 import NewApartment from './pages/Apartment';
+import Login from './pages/Logon';
 
 export default function Routes() {
     return (

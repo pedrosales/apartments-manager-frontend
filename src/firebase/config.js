@@ -2,15 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 
-const config = {
-    apiKey: "AIzaSyCJ_ph5UUwkDxdBhEOZ_v7rXobZdkUc4OA",
-    authDomain: "kipler-apartments-manager.firebaseapp.com",
-    databaseURL: "https://kipler-apartments-manager.firebaseio.com",
-    projectId: "kipler-apartments-manager",
-    storageBucket: "kipler-apartments-manager.appspot.com",
-    messagingSenderId: "809667579012",
-    appId: "1:809667579012:web:c018954debefafd99906d1"
-}
+
 
 class Firebase {
     constructor() {

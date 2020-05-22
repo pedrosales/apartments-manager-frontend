@@ -30,8 +30,18 @@ const NewCondominium = () => {
                 history.push('/login');
             }
         })
-    })
+    }, [userState, history])
 
+    const resetFields = () => {
+        setName('');
+        setStreet('');
+        setNumber('');
+        setNeighborhood('');
+        setCity('');
+        setState('');
+        setCountry('');
+        setZipCode('');
+    };
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -58,12 +68,16 @@ const NewCondominium = () => {
                 //alert(response.data.message);
                 let messages = "";
                 if (response.data.data.length > 0) {
-                    console.log(response.data.data.length);
                     response.data.data.forEach((item) => {
                         messages += item.message + "\n";
                     })
                     alert(messages);
                 }
+            }
+            else {
+                alert(response.data.message);
+                resetFields();
+
             }
 
         } catch (error) {

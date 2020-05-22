@@ -2,9 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 
-const config = {
 
-}
 
 class Firebase {
     constructor() {

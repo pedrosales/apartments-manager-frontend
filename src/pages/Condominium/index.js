@@ -58,9 +58,11 @@ const NewCondominium = () => {
         };
 
         try {
-            const token = await userState.getIdToken().then(token => {
-                return token;
-            });
+            // const token = await userState.getIdToken().then(token => {
+            //     return token;
+            // });
+
+            const token = await userState.getIdToken();
 
             const response = await api.post('v1/condominiums', data, { headers: { 'Authorization': `Bearer ${token}` } });
 
@@ -94,9 +96,9 @@ const NewCondominium = () => {
 
                     <h1>Create new condominium</h1>
 
-                    <Link className="back-link" to="/profile">
+                    <Link className="back-link" to="/condominiums">
                         <FiArrowLeft size={16} color="#e02041" />
-                        Back to home
+                        Back to list
                     </Link>
                 </section>
                 <form onSubmit={handleSubmit}>
@@ -109,6 +111,7 @@ const NewCondominium = () => {
                             onChange={e => setName(e.target.value)}
                         />
                     </div>
+                    <div className="input-group">
                     <input
                         placeholder="Addres"
                         minLength="1"
@@ -116,21 +119,22 @@ const NewCondominium = () => {
                         value={street}
                         onChange={e => setStreet(e.target.value)}
                     />
+                    </div>
                     <div className="input-group">
+                     <input
+                            placeholder="Nº"
+                            minLength="1"
+                            type="number"
+                            style={{ width: 130 }}
+                            value={number}
+                            onChange={e => setNumber(e.target.value)}
+                        />
                         <input
                             placeholder="Neighborhood"
                             minLength="1"
                             maxLength="160"
                             value={neighborhood}
                             onChange={e => setNeighborhood(e.target.value)}
-                        />
-                        <input
-                            placeholder="Nº"
-                            minLength="1"
-                            type="number"
-                            style={{ width: 100 }}
-                            value={number}
-                            onChange={e => setNumber(e.target.value)}
                         />
                     </div>
                     <div className="input-group">

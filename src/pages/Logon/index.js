@@ -21,44 +21,47 @@ const Login = () => {
         e.preventDefault();
         let response = await firebase.login(email, password);
         if (response.hasOwnProperty("message")) {
+            alert(response.message);
             console.log(response.message);
         }
         if (response.hasOwnProperty("user")) {
             console.log(response.user);
-            history.push("/");
+            history.push("/condominiums");
         }
     };
 
     return (
         <div className="logon-container">
-            <section className="form">
-                <img src={logoImg} alt="ApartmentsBuilding" />
+            <div className="content">
+                <section className="form">
+                    <img src={logoImg} alt="ApartmentsBuilding" />
 
-                <form onSubmit={login}>
-                    <h1>Make your login</h1>
+                    <form onSubmit={login}>
+                        <h1>Make your login</h1>
 
-                    <input
-                        placeholder="Email"
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <input
-                        placeholder="Password"
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                    <button className="button" type="submit">Login</button>
+                        <input
+                            placeholder="Email"
+                            type="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <input
+                            placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <button className="button" type="submit">Login</button>
 
-                    <Link className="back-link" to="/register">
-                        <FiLogIn size={16} color="#e02041" />
+                        <Link className="back-link" to="/signin">
+                            <FiLogIn size={16} color="#e02041" />
                         SignIn
                     </Link>
-                </form>
-            </section>
+                    </form>
+                </section>
 
-            <img src={buildingImg} height="400" alt="Heroes" />
+                <img src={buildingImg} height="380" alt="Heroes" />
+            </div>
         </div>
     );
 }

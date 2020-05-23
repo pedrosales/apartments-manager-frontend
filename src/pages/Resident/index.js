@@ -10,6 +10,11 @@ import logoImg from '../../assets/logo.svg';
 
 const NewResident = () => {
     const [userState, setUserState] = useState(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [phone, setPhone] = useState('');
 
     const history = useHistory();
 
@@ -23,6 +28,21 @@ const NewResident = () => {
             }
         })
     })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(userState);
+        
+        const data = {
+            name,
+            email,
+            cpf,
+            birthDate,
+            phone
+        };
+
+        console.log(data);
+    }
 
     return (
         <div className="new-resident-container">
@@ -39,33 +59,37 @@ const NewResident = () => {
                     </Link> */}
                     </div>
                 </section>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input
                         placeholder="Name"
-                    // value={name}
-                    // onChange={e => setName(e.target.value)}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                     />
                     <input
                         type="email"
                         placeholder="E-mail"
-                    // value={email}
-                    // onChange={e => setEmail(e.target.value)}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     />
                     <div className="input-group">
                         <input
                             placeholder="CPF"
-                        // value={city}
-                        // onChange={e => setCity(e.target.value)}
+                        value={cpf}
+                        onChange={e => setCpf(e.target.value)}
                         />
 
                         <input
                             placeholder="Birth Date"
                             style={{ width: 140 }}
-                        // value={uf}
-                        // onChange={e => setUf(e.target.value)}
+                        value={birthDate}
+                        onChange={e => setBirthDate(e.target.value)}
                         />
                     </div>
-                    <input placeholder="Phone" />
+                    <input 
+                        placeholder="Phone" 
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                        />
                     <button className="button" type="submit">Create</button>
                 </form>
             </div>

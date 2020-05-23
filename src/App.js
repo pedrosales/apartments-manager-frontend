@@ -6,7 +6,7 @@ import './global.css';
 function App() {
   return (
     <div className="App">
-      <Nav></Nav>
+      {/* <Nav></Nav> */}
       <main>
         <Routes />
       </main>

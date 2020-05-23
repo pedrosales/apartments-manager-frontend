@@ -26,8 +26,13 @@ class Firebase {
         return user;
     }
 
-    async signin(email, password) {
-        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+    async signin(email, password, name) {
+        const user = await firebase.auth().createUserWithEmailAndPassword(email, password).then(async (newUser) => {
+            await newUser.user.updateProfile({
+                displayName: name
+            });
+            return newUser;
+        }).catch(err => {
             console.log(err);
             return err;
         });
@@ -48,6 +53,11 @@ class Firebase {
         return new Promise(resolve => {
             this.auth.onAuthStateChanged(resolve);
         })
+    }
+
+    async getCurrentUser() {
+        const user = await firebase.auth.getCurrentUser();
+        return user;
     }
 }
 

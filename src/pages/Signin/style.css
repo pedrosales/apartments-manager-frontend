@@ -1,4 +1,4 @@
-.logon-container {
+.signin-container {
     width: 100%;
     max-width: 1120px;
     height: 100vh;
@@ -6,10 +6,10 @@
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-.logon-container .content {
+.signin-container .content {
     width: 100%;
     padding: 96px;
     background: #f0f0f5;
@@ -21,38 +21,28 @@
     align-items: center;
 }
 
-.logon-container .content section {
+.signin-container .content section {
     width: 100%;
     max-width: 380px;
 }
 
-.logon-container .content section h1 {
+.signin-container .content section h1 {
     margin: 64px 0 32px;
     font-size: 32px;
 }
 
-.logon-container .content section p {
+.signin-container .content section p {
     font-size: 18px;
     color: #737380;
     line-height: 32px;
 }
 
-.logon-container section.form {
+.signin-container .content form {
     width: 100%;
-    max-width: 350px;
-    margin-right: 30px;
-
+    max-width: 450px;
 }
 
-.logon-container section.form form {
-    margin-top: 30px;
-}
-
-.logon-container section.form form input {
+.signin-container .content form input,
+.signin-container .content form textarea {
     margin-top: 8px;
-}
-
-.logon-container section.form form h1 {
-    font-size: 32px;
-    margin-bottom: 32px;
 }

@@ -54,3 +54,8 @@
 .new-resident-container .content form .input-group input+input {
     margin-left: 8px;
 }
+
+.new-resident-container .content form .input-group .datepicker {
+    margin-left: 8px;
+    width: 150px;
+}

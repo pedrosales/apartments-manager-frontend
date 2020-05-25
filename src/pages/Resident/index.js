@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import api from '../../services/api';
 import firebase from '../../firebase/config';
 
-import './style.css';
+import './styles.css';
 import 'react-datepicker/dist/react-datepicker.css'
 
 import logoImg from '../../assets/logo.svg';
@@ -60,7 +60,11 @@ const NewResident = () => {
             const response = await api.post('v1/residents', data, { headers: { 'Authorization': `Bearer ${token}` } });
 
             if (!response.data.success) {
+                console.log(response);
                 //alert(response.data.message);
+                if (response.data.hasOwnProperty("messsage")) {
+                    alert(response.data.message);
+                }
                 let messages = "";
                 if (response.data.data.length > 0) {
                     response.data.data.forEach((item) => {
@@ -75,7 +79,7 @@ const NewResident = () => {
 
             }
         } catch (error) {
-
+            alert(error);
         }
     }
 
@@ -88,10 +92,10 @@ const NewResident = () => {
                     <div style={{ padding: 10 }}>
                         <h1>Create new Resident</h1>
 
-                        {/* <Link className="back-link" to="/">
-                        <FiArrowLeft size={16} color="#e02041" />
-                        Não tenho cadastro
-                    </Link> */}
+                        <Link className="back-link" to="/residents">
+                            <FiArrowLeft size={16} color="#e02041" />
+                        Back to list
+                    </Link>
                     </div>
                 </section>
                 <form onSubmit={handleSubmit}>

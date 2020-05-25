@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory, withRouter } from 'react-router-dom';
-import { FiArrowLeft, FiPower, FiTrash2 } from 'react-icons/fi';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { FiPower, FiTrash2 } from 'react-icons/fi';
 
 import api from '../../services/api';
 import firebase from '../../firebase/config';
 
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
+
+const animatedComponents = makeAnimated();
 
 const CondominiumList = () => {
     const [userState, setUserState] = useState(null);
@@ -30,7 +34,7 @@ const CondominiumList = () => {
                 history.push('/login');
             }
         })
-    }, [userState])
+    }, [history])
 
     async function handleDelete(id) {
         try {
@@ -61,7 +65,8 @@ const CondominiumList = () => {
                 <img src={logoImg} alt="Condominium Manager" />
                 <span>Welcome, {userState != null ? userState.displayName : ''}</span>
 
-                <Link className="button" to="/condominiums/new">Create new Condominium</Link>
+                <Link className="button" to="/condominiums/new">New Condominium</Link>
+                <Link className="button" to="/apartments">Apartments</Link>
                 <button onClick={() => logout()} type="button">
                     <FiPower size={18} color="#e02041" />
                 </button>
@@ -84,6 +89,17 @@ const CondominiumList = () => {
                         <strong>ZipCode:</strong>
                         <p>{condominium.zipCode}</p>
 
+                        <strong>Apartments:</strong>
+                        <Select
+                            placeholder=""
+                            className="select-residents"
+                            value={condominium.apartmens.map(apartment => { return { label: (`${apartment.number} - ${apartment.block}`), value: apartment.id } })}
+                            options={condominium.apartmens.map(apartment => { return { label: (`${apartment.number} - ${apartment.block}`), value: apartment.id } })} isMulti
+                            components={animatedComponents}
+                            isDisabled
+                        />
+
+                        <Link className="button" to={`apartments/new/${condominium.id}`}>Create apartments</Link>
                         <button onClick={() => handleDelete(condominium.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>

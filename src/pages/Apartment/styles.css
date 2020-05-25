@@ -1,4 +1,4 @@
-.new-condominium-container {
+.new-apartments-container {
     width: 100%;
     max-width: 1120px;
     height: 100vh;
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.new-condominium-container .content {
+.new-apartments-container .content {
     width: 100%;
     padding: 96px;
     background: #f0f0f5;
@@ -21,68 +21,64 @@
     align-items: center;
 }
 
-.new-condominium-container .content section {
+.new-apartments-container .content section {
     width: 100%;
     max-width: 380px;
 }
 
-.new-condominium-container .content section h1 {
+.new-apartments-container .content section h1 {
     margin: 64px 0 32px;
     font-size: 32px;
 }
 
-.new-condominium-container .content section p {
+.new-apartments-container .content section p {
     font-size: 18px;
     color: #737380;
     line-height: 32px;
 }
 
-.new-condominium-container .content form {
+.new-apartments-container .content form {
     width: 100%;
     max-width: 450px;
 }
 
-.new-condominium-container .content form input {
+.new-apartments-container .content form input,
+.new-apartments-container .content form textarea {
     margin-top: 8px;
 }
 
-.new-condominium-container .content form .input-group {
-    display: flex;
-
+.new-apartments-container .select-residents {
+    margin-top: 8px;
 }
 
-.new-condominium-container .content form .input-group input+input {
-    margin-left: 8px;
-}
-
-.condominium-list-container {
+.apartment-list-container {
     width: 100%;
     max-width: 1180px;
     padding: 0 30px;
     margin: 32px auto;
 }
 
-.condominium-list-container header {
+.apartment-list-container header {
     display: flex;
     align-items: center;
 }
 
-.condominium-list-container header span {
+.apartment-list-container header span {
     font-size: 20px;
     margin-left: 24px;
 }
 
-.condominium-list-container header img {
+.apartment-list-container header img {
     height: 64px;
 }
 
-.condominium-list-container header a {
+.apartment-list-container header a {
     width: 180px;
     margin-left: auto;
     margin-top: 0;
 }
 
-.condominium-list-container header button {
+.apartment-list-container header button {
     height: 60px;
     width: 60px;
     border-radius: 4px;
@@ -92,52 +88,52 @@
     transition: border-color 0.2s;
 }
 
-.condominium-list-container header button:hover {
+.apartment-list-container header button:hover {
     border-color: #999;
 }
 
-.condominium-list-container h1 {
+.apartment-list-container h1 {
     margin-top: 80px;
     margin-bottom: 24px;
     align-items: center;
 }
 
-.condominium-list-container ul {
+.apartment-list-container ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 24px;
     list-style: none;
 }
 
-.condominium-list-container ul li {
+.apartment-list-container ul li {
     background: #fff;
     padding: 24px;
     border-radius: 8px;
     position: relative;
 }
 
-.condominium-list-container ul li button {
+.apartment-list-container ul li button {
     position: absolute;
     right: 24px;
     top: 24px;
     border: 0;
 }
 
-.condominium-list-container ul li button:hover {
+.apartment-list-container ul li button:hover {
     opacity: 0.8;
 }
 
-.condominium-list-container ul li strong {
+.apartment-list-container ul li strong {
     display: block;
     margin-bottom: 16px;
     color: #41414d;
 }
 
-.condominium-list-container ul li p+strong {
+.apartment-list-container ul li p+strong {
     margin-top: 32px;
 }
 
-.condominium-list-container ul li p {
+.apartment-list-container ul li p {
     color: #737380;
     line-height: 21px;
     font-size: 16px;

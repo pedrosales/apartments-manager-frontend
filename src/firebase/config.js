@@ -26,6 +26,15 @@ class Firebase {
         return user;
     }
 
+    async loginGoogle() {
+        const user = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(err => {
+            console.log(err);
+            return err;
+        })
+
+        return user;
+    }
+
     async signin(email, password, name) {
         const user = await firebase.auth().createUserWithEmailAndPassword(email, password).then(async (newUser) => {
             await newUser.user.updateProfile({

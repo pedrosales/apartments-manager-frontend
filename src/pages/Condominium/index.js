@@ -58,10 +58,6 @@ const NewCondominium = () => {
         };
 
         try {
-            // const token = await userState.getIdToken().then(token => {
-            //     return token;
-            // });
-
             const token = await userState.getIdToken();
 
             const response = await api.post('v1/condominiums', data, { headers: { 'Authorization': `Bearer ${token}` } });
@@ -83,7 +79,6 @@ const NewCondominium = () => {
             }
 
         } catch (error) {
-            console.log(error);
             alert("Error in condominium creation.");
         }
     }
@@ -109,25 +104,28 @@ const NewCondominium = () => {
                             maxLength="160"
                             value={name}
                             onChange={e => setName(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="input-group">
-                    <input
-                        placeholder="Addres"
-                        minLength="1"
-                        maxLength="500"
-                        value={street}
-                        onChange={e => setStreet(e.target.value)}
-                    />
+                        <input
+                            placeholder="Addres"
+                            minLength="1"
+                            maxLength="500"
+                            value={street}
+                            onChange={e => setStreet(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="input-group">
-                     <input
+                        <input
                             placeholder="Nº"
                             minLength="1"
                             type="number"
                             style={{ width: 130 }}
                             value={number}
                             onChange={e => setNumber(e.target.value)}
+                            required
                         />
                         <input
                             placeholder="Neighborhood"
@@ -135,6 +133,7 @@ const NewCondominium = () => {
                             maxLength="160"
                             value={neighborhood}
                             onChange={e => setNeighborhood(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="input-group">
@@ -144,6 +143,7 @@ const NewCondominium = () => {
                             maxLength="160"
                             value={city}
                             onChange={e => setCity(e.target.value)}
+                            required
                         />
                         <input
                             placeholder="State"
@@ -152,6 +152,7 @@ const NewCondominium = () => {
                             style={{ width: 100 }}
                             value={state}
                             onChange={e => setState(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="input-group">
@@ -161,6 +162,7 @@ const NewCondominium = () => {
                             maxLength="160"
                             value={country}
                             onChange={e => setCountry(e.target.value)}
+                            required
                         />
                         <input
                             placeholder="ZipCode"
@@ -170,6 +172,7 @@ const NewCondominium = () => {
                             maxLength="8"
                             value={zipCode}
                             onChange={e => setZipCode(e.target.value)}
+                            required
                         />
                     </div>
                     <button className="button" type="submit">Create</button>
